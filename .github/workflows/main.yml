@@ -27,7 +27,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          python manage.py test appmanager
+          python manage.py test backend.appmanager.tests.py
 
   sonarcloud:
     name: SonarCloud
