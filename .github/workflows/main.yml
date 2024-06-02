@@ -38,6 +38,12 @@ jobs:
           pip install cython
           pip install -r backend/requirements.txt
 
+      - name: Migrate BD
+        run: |
+          cd backend
+          python manage.py makemigrations
+          python manage.py migrate
+
       - name: Run Tests
         run: |
           cd backend
