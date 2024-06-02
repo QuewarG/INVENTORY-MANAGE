@@ -150,10 +150,8 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_NAME = 'mi_sesion'
 SESSION_COOKIE_AGE = 1209600  # Tiempo de vida de la sesión en segundos (por defecto, 2 semanas)
 
-
-
-RECAPTCHA_PUBLIC_KEY = '6LewjxMpAAAAALEkAWvKRj-33lg1VM6OBmrdnzc7'
-RECAPTCHA_PRIVATE_KEY = '6LewjxMpAAAAAD8zH1U1mboETeUaWZRfR01AZRF6'
+RECAPTCHA_PUBLIC_KEY = env('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = env('RECAPTCHA_PRIVATE_KEY')
 
 #Listado de urls que pueden acceder a la API
 #http://localhost:5173 corresponde al servidor del vite+react
