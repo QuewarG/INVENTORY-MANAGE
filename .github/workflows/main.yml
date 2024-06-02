@@ -52,7 +52,6 @@ jobs:
 
   sonarcloud:
     name: SonarCloud
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -65,7 +64,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   createPullRequest_Merge:
-    needs: sonarcloud
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -88,25 +87,3 @@ jobs:
           head: develop
           draft: false
 
-      - name: Merge Pull Request
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const { owner, repo } = context.repo;
-            const pr = await github.pulls.list({
-              owner,
-              repo,
-              state: 'open',
-              head: `${owner}:auto-merge/develop-to-main`
-            });
-
-            if (pr.data.length > 0) {
-              await github.pulls.merge({
-                owner,
-                repo,
-                pull_number: pr.data[0].number,
-                merge_method: 'merge'
-              });
-            } else {
-              console.log('No open pull requests found for auto-merge/develop-to-main');
-            }
