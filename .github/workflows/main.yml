@@ -20,6 +20,8 @@ jobs:
       DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
       ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      RECAPTCHA_PUBLIC_KEY: ${{ secrets.RECAPTCHA_PUBLIC_KEY }}
+      RECAPTCHA_PRIVATE_KEY: ${{ secrets.RECAPTCHA_PRIVATE_KEY }}
 
     steps:
       - name: Checkout code
