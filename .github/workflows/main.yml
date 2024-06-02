@@ -21,11 +21,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r backend/App/appmanager/requirements.txt
+          pip install -r backend/requirements.txt
 
       - name: Run Tests
         run: |
-          python manage.py test backend/App/appmanager/tests.py
+          python manage.py test appmanager
 
   sonarcloud:
     name: SonarCloud
