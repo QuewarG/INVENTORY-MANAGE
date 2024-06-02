@@ -5,8 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.db import IntegrityError
 from django.utils.translation import gettext as _, activate
-from django.conf import settings
-from .forms import *
+from django.conf import setting
 
 # Importaciones restframework
 from rest_framework import viewsets
