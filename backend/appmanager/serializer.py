@@ -16,11 +16,6 @@ class CargoSerializer(serializers.ModelSerializer):
         model = Cargo
         fields = '__all__'
 
-class SucursalSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Sucursal
-        fields = '__all__'
-
 class PersonaXCargoSerializer(serializers.ModelSerializer):
     class Meta:
         model = PersonaXCargo
@@ -44,11 +39,6 @@ class OrdenTrabajoSerializer(serializers.ModelSerializer):
 class InventarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Inventario
-        fields = '__all__'
-
-class InventarioPorSucursalSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = InventarioPorSucursal
         fields = '__all__'
 
 class CotizacionReparacionSerializer(serializers.ModelSerializer):
