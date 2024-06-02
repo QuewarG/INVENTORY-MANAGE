@@ -47,12 +47,11 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Deshabilita los clones superficiales para un análisis más completo
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Necesario para obtener información de la PR, si aplica
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Token de acceso de SonarCloud
