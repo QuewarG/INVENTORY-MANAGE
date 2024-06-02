@@ -26,10 +26,6 @@ class CargoViewSet(viewsets.ModelViewSet):
     queryset = Cargo.objects.all()
     serializer_class = CargoSerializer
 
-class SucursalViewSet(viewsets.ModelViewSet):
-    queryset = Sucursal.objects.all()
-    serializer_class = SucursalSerializer
-
 class PersonaXCargoViewSet(viewsets.ModelViewSet):
     queryset = PersonaXCargo.objects.all()
     serializer_class = PersonaXCargoSerializer
@@ -49,10 +45,6 @@ class OrdenTrabajoViewSet(viewsets.ModelViewSet):
 class InventarioViewSet(viewsets.ModelViewSet):
     queryset = Inventario.objects.all()
     serializer_class = InventarioSerializer
-
-class InventarioPorSucursalViewSet(viewsets.ModelViewSet):
-    queryset = InventarioPorSucursal.objects.all()
-    serializer_class = InventarioPorSucursalSerializer
 
 class CotizacionReparacionViewSet(viewsets.ModelViewSet):
     queryset = CotizacionReparacion.objects.all()
