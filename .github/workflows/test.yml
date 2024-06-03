@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      DJANGO_SETTINGS_MODULE: backend.App.settings
       DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
       DJANGO_DEBUG: false
       DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
