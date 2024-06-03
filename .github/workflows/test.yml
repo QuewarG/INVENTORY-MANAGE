@@ -49,7 +49,12 @@ jobs:
           python manage.py makemigrations
           python manage.py migrate
 
-      - name: Run Tests
+      - name: Run Fucionality Tests BD 
+        run: |
+          cd backend
+          python manage.py test appmanager
+
+      - name: Run Tests no funcionan :(
         run: |
           tox -e py
 
