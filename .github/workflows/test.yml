@@ -47,23 +47,18 @@ jobs:
             python manage.py makemigrations
             python manage.py migrate
 
-
-      - name: Run Fucionality Tests BD 
+  
+      - name: Run Funcionality Tests BD 
         run: |
           cd backend
           python manage.py test appmanager
 
-      - name: Run Tests no funcionan :(
+      - name: Coverage Test
         run: |
           pwd
           coverage run backend/manage.py test appmanager
           coverage xml 
 
-  sonarcloud:
-    name: SonarCloud
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
