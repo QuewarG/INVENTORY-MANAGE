@@ -13,6 +13,11 @@ jobs:
     
           - name: Make changes to pull request
             run: date +%s > report.txt
+            
+          - name: Update develop branch
+            run: |
+              git checkout develop
+              git pull origin develop
     
           - name: Create Pull Request
             id: cpr
