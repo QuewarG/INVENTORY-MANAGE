@@ -43,11 +43,6 @@ jobs:
             pip install cython
             pip install -r backend/requirements.txt
 
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Migrate BD
         run: |
             cd backend
