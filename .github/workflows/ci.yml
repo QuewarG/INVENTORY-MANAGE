@@ -35,7 +35,5 @@ jobs:
               labels: |
                 report
                 automated pr
-              reviewers: Camilo959
-              milestone: 1
               draft: false
               
