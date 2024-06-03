@@ -1,1 +1,26 @@
-#pruebas
+name: main
+on:
+  push:
+    branches: 
+        - develop
+  
+  
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Include test.yml
+        uses: .github\workflows\test.yml
+
+        
+    
+  ci:
+      name: ci
+      needs: test
+      runs-on: ubuntu-latest
+      steps:
+      - name: Include ci.yml
+        uses: .github\workflows\ci.yml
+    
+    
