@@ -1,10 +1,11 @@
 name: ci
 
 on:
-  push:
-    branches:
-      - develop
-
+  workflow_run:
+    workflows: ["main"]
+    types:
+      - completed
+    
 jobs:
     createPullRequest:
         runs-on: ubuntu-latest
@@ -23,7 +24,7 @@ jobs:
               committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
               author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
               signoff: false
-              branch: main
+              branch: maintest
               delete-branch: false
               title: 'TEST SUCCESSFUL'
               body: |
