@@ -1,17 +1,25 @@
 name: main
+
 on:
   push:
     branches: 
         - develop
   
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
   
 jobs:
+
+
+
   test:
     name: test
     runs-on: ubuntu-latest
     steps:
       - name: Include test.yml
-        uses: \.github\workflows\test.yml
+        uses: ./.github/workflows/test.yml
 
         
     
@@ -22,6 +30,6 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - name: Include ci.yml
-        uses: \.github\workflows\ci.yml
+        uses: ./.github/workflows/ci.yml
     
     
