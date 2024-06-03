@@ -1,7 +1,7 @@
 name: test
 
 on:
-  workflow_call:
+
   pull_request:
     branches:
       - develop
@@ -27,8 +27,25 @@ jobs:
 
     steps:
       
-      - name: 🧑‍🔧 Get Core Dependencies
-        uses: ./.github/workflows/actions/get_core_dependencies/action.yml
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+            python-version: '3.9'  # Especifica la versión de Python adecuada
+
+      - name: Install dependencies
+        run: |
+            python -m pip install --upgrade pip setuptools wheel
+            pip install cython
+            pip install -r backend/requirements.txt
+
+      - name: Migrate BD
+        run: |
+            cd backend
+            python manage.py makemigrations
+            python manage.py migrate
 
 
       - name: Run Fucionality Tests BD 
