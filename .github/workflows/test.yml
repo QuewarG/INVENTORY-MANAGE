@@ -45,9 +45,16 @@ jobs:
           python manage.py makemigrations
           python manage.py migrate
 
-      - name: Run Tests
+      - name: Run Fucionality Tests BD 
         run: |
-          tox -e py
+          cd backend
+          coverage run manage.py test
+          coverage xml
+
+      - name: Run Tests no funcionan :(
+        run: |
+          coverage run backend/manage.py test appmanager
+          coverage xml 
 
   sonarcloud:
     name: SonarCloud
