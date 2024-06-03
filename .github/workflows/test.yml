@@ -1,6 +1,9 @@
 name: test
 
 on:
+  push:
+    branches:
+      - develop
 
   pull_request:
     branches:
@@ -26,14 +29,13 @@ jobs:
       RECAPTCHA_PRIVATE_KEY: ${{ secrets.RECAPTCHA_PRIVATE_KEY }}
 
     steps:
-      
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-            python-version: '3.9'  # Especifica la versión de Python adecuada
+          python-version: '3.9'  # Especifica la versión de Python adecuada
 
       - name: Install dependencies
         run: |
@@ -41,36 +43,33 @@ jobs:
             pip install cython
             pip install -r backend/requirements.txt
 
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Migrate BD
         run: |
             cd backend
             python manage.py makemigrations
             python manage.py migrate
 
-
       - name: Run Fucionality Tests BD 
         run: |
           cd backend
           python manage.py test appmanager
 
-      - name: Run Tests no funcionan :(
+      - name: Run Tests
         run: |
           pwd
           coverage run backend/manage.py test appmanager
           coverage xml 
 
-  sonarcloud:
-    name: SonarCloud
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
+      - name: SonarCloud Analize
         uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-
-
+          env:
+            GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}  # Needed to get PR information, if any
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          with:
+            args: >
+              -Dsonar.python.coverage.reportPaths=coverage.xml
