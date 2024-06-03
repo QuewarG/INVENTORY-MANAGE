@@ -52,11 +52,13 @@ jobs:
       - name: Run Fucionality Tests BD 
         run: |
           cd backend
-          python manage.py test appmanager
+          coverage run manage.py test
+          coverage xml
 
       - name: Run Tests no funcionan :(
         run: |
-          tox -e py
+          coverage run backend/manage.py test appmanager
+          coverage xml 
 
   sonarcloud:
     name: SonarCloud
