@@ -1,7 +1,9 @@
 name: ci
 
 on:
-  workflow_call:
+  push:
+    branches: 
+        - develop
     
 jobs:
     createPullRequest:
