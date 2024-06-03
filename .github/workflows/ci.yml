@@ -24,7 +24,6 @@ jobs:
               author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
               signoff: false
               base: maintest  # Cambia la rama base a maintest
-              branch: update-report-${{ github.sha }}  # Crear una nueva rama temporal basada en develop
               delete-branch: false
               title: 'TEST SUCCESSFUL'
               body: |
