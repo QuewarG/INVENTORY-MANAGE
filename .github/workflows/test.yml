@@ -37,9 +37,3 @@ jobs:
             python -m pip install --upgrade pip setuptools wheel
             pip install cython
             pip install -r backend/requirements.txt
-
-      - name: Migrate BD
-        run: |
-            cd backend
-            python manage.py makemigrations
-            python manage.py migrate
