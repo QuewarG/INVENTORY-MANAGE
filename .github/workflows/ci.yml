@@ -13,6 +13,11 @@ jobs:
     
           - name: Make changes to pull request
             run: date +%s > report.txt
+            
+          - name: Update develop branch
+            run: |
+              git checkout develop
+              git pull origin develop
     
           - name: Create Pull Request
             id: cpr
@@ -23,8 +28,7 @@ jobs:
               committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
               author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
               signoff: false
-              base: develop
-              branch: maintest
+              base: maintest  # Cambia la rama base a maintest
               delete-branch: false
               title: 'TEST SUCCESSFUL'
               body: |
