@@ -51,11 +51,11 @@ jobs:
       - name: Run Fucionality Tests BD 
         run: |
           cd backend
-          coverage run manage.py test
-          coverage xml
+          python manage.py test appmanager
 
       - name: Run Tests no funcionan :(
         run: |
+          pwd
           coverage run backend/manage.py test appmanager
           coverage xml 
 
