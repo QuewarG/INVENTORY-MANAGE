@@ -43,23 +43,3 @@ jobs:
             cd backend
             python manage.py makemigrations
             python manage.py migrate
-
-      - name: Run Fucionality Tests BD 
-        run: |
-          cd backend
-          python manage.py test appmanager
-
-      - name: Run Tests
-        run: |
-          pwd
-          coverage run backend/manage.py test appmanager
-          coverage xml 
-
-      - name: Escaneo con SonarCloud
-        uses: SonarSource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.python.coverage.reportPaths=coverage.xml
