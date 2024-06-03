@@ -51,7 +51,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          tox -e py
+          tox -e py39
 
   sonarcloud:
     name: SonarCloud
