@@ -25,6 +25,7 @@ jobs:
               signoff: false
               branch: main
               delete-branch: false
+              merge-method: none
               title: 'TEST SUCCESSFUL'
               body: |
                 Update report
@@ -37,4 +38,4 @@ jobs:
                 automated pr
               milestone: 1
               draft: false
-              merge-method: none
+              
