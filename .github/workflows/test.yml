@@ -1,6 +1,10 @@
 name: test
 
 on:
+  push:
+    branches:
+      - 'develop'
+
   pull_request:
     branches:
       - develop
@@ -47,8 +51,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          cd backend
-          python manage.py test appmanager
+          tox -e py
 
   sonarcloud:
     name: SonarCloud
