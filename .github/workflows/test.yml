@@ -28,7 +28,7 @@ jobs:
     steps:
       
       - name: 🧑‍🔧 Get Core Dependencies
-        uses: ./.github/workflows/actions/get_core_dependencies
+        uses: ./.github/workflows/actions/get_core_dependencies/action.yml
 
 
       - name: Run Fucionality Tests BD 
