@@ -1,6 +1,6 @@
 # INVENTORY-MANAGER
 
-Solución generica de un software gestor de inventario (Fase de pruebas)
+Solución generica de un software gestor de inventario-2024
 
 
 ## Run Locally
