@@ -11,17 +11,17 @@ jobs:
         steps:
           - uses: actions/checkout@v4
     
+          - name: Update develop branch
+            run: |
+              git checkout develop
+              git pull origin develop
+    
           - name: Make changes to pull request
             run: |
               # Realizar los cambios necesarios aquí, si es necesario
               date +%s > report.txt
               # Agregar todos los archivos modificados a la etapa de preparación del commit
               git add .
-          
-          - name: Update develop branch
-            run: |
-              git checkout develop
-              git pull origin develop
     
           - name: Create Pull Request
             id: cpr
