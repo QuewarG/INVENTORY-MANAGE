@@ -5,7 +5,7 @@ import environ
 import dj_database_url
 
 
-# Deshabilitar la verificación SSL
+# Deshabilitar la verificación 
 ssl._create_default_https_context = ssl._create_unverified_context
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
