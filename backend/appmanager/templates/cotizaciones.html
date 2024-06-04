@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+
+
+{% comment %} SECCION DE MENSAJES DE ALERTA O VERIFICACION {% endcomment %}
+<div>
+    {% if messages %}
+    <div class="alert alert-success" role="alert">
+        <ul class="messages">
+            {% for message in messages %}
+            <h3{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</h3>
+                {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <script>
+        window.setTimeout(function(){
+            $(".alert").fadeTo(500, 0).slideUp(1000, function(){
+                $(this).remove();
+            });
+        }, 1500);
+    </script>
+</div>
+
+<div class="card bg-primary text-white">
+    <div class="card-header">
+        <h2 class="">
+            <i class="fa-solid fa-receipt"></i>
+            <span style="margin-left: 15px;">{% trans "Cotizaciones" %}</span>
+        </h2>
+    </div>
+</div>
+
+<div class="table-responsive py-4" style="max-height: 480px; overflow-y: auto;">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <!--INFORMACIÓN DE LA TABLA-->
+                <th>{% trans "Código" %}</th>
+                <th>{% trans "Precio" %}</th>
+                <th>{% trans "Observaciones" %}</th>
+                <th>{% trans "Estado" %}</th>
+                <th>{% trans "Fecha de Expedición" %}</th>
+                <th colspan="2">{% trans "Opciones" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--INFORMACIÓN DE BASE DE DATOS-->
+            {% for cotizacion in cotizaciones %}
+            <tr>
+                <td>{{ cotizacion.cotrep_cod }}</td>
+                <td>{{ cotizacion.cotrep_precioreparacion }}</td>
+                <td>{{ cotizacion.cotrep_observaciones }}</td>
+                <td>
+                    {% if cotizacion.cotrep_estado %}
+                        {% trans "Aprobada" %}
+                    {% else %}
+                        {% trans "Pendiente" %}
+                    {% endif %}
+                </td>
+                <td>{{ cotizacion.create_at }}</td>
+
+                {% if request.user.cod_rol.obtener_codigo_rol == 5 %} 
+                    <form method="post" action="{% url 'cambiar_estado_cotizacion' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="acept_ID" value="{{cotizacion.cotrep_cod}}">
+                        <td> <button type="submit" class="btn btn-outline-primary">{% trans "Aceptar cotización" %}</button></td>
+                    </form>
+                {% else %}
+                    {% comment %} Boton de edicion {% endcomment %}
+                <form method="get" action = "{% url 'edit_cotizacion_reparacion' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="edit_cotID" value="{{cotizacion.cotrep_cod}}">
+                    <td> <button type="submit" class="btn btn-outline-primary">{% trans "Editar" %}</button></td>
+                </form>
+
+                {% comment %} Boton de borrado {% endcomment %}
+                <form method="post" action="{% url 'delete_CotizacionReparacion' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="delete_cotID" value="{{cotizacion.cotrep_cod}}">
+                    <td> <button type="submit" class="btn btn-outline-danger">{% trans "Eliminar" %}</button></td>
+                </form>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% comment %} <button type="button" class="btn btn-outline-success" onclick=redirectcreateUser() style="margin-left: 5px; margin-top: 5px;"> <i class="fa-solid fa-plus"></i> {% trans "Añadir Cotización" %}</button> {% endcomment %}
+</div>
+
+{% endblock %}
+
