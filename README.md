@@ -2,9 +2,7 @@
 
 Solución generica de un software gestor de inventario-2024 (Fase de pruebas 2024 :D)
 
-
-Esto es una prueba de nuestro proceso DevOps
-
+Esto es una pruebas para nuestro proceso devops
 
 ## Run Locally
 
